@@ -19,7 +19,7 @@ public class allExaminer extends javax.swing.JFrame {
      */
     public allExaminer() {
         initComponents();
-//        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         try
         {
@@ -46,6 +46,11 @@ public class allExaminer extends javax.swing.JFrame {
         closeBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         examiners = new javax.swing.JTable();
+        searchQuery = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        searchBtn = new javax.swing.JButton();
+        searchBy = new javax.swing.JComboBox<>();
+        showAllBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,28 +76,67 @@ public class allExaminer extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(examiners);
 
+        searchQuery.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchQueryActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Search By : ");
+
+        searchBtn.setText("Search");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
+
+        searchBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Academic Year", "Semester", "Branch", "Division", "Exam", "Internal Name", "External Name", "Mobile", "Account Number", "IFSC Code", "Bank Branch", "Bank Address", "Number of Student", "Amount Per Student" }));
+
+        showAllBtn.setText("Show All");
+        showAllBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showAllBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(466, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(closeBtn)
-                        .addGap(390, 390, 390))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(437, 437, 437))))
             .addComponent(jScrollPane1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(closeBtn)
+                .addGap(390, 390, 390))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(searchBy, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(searchQuery, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(searchBtn)
+                .addGap(157, 157, 157)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 426, Short.MAX_VALUE)
+                .addComponent(showAllBtn)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(searchQuery, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(searchBtn)
+                    .addComponent(searchBy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(showAllBtn))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
                 .addGap(23, 23, 23)
                 .addComponent(closeBtn)
                 .addContainerGap())
@@ -101,9 +145,109 @@ public class allExaminer extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    private void formComponentShown(java.awt.event.ComponentEvent evt)
-    {
+//    private void formComponentShown(java.awt.event.ComponentEvent evt)
+//    {
+////        try
+////        {
+////            Connection con = ConnectionProvider.getConnection();
+////            Statement st = con.createStatement();
+////            ResultSet rs = st.executeQuery("SELECT * from Examiner;");
+////            System.out.println(rs);
+////            examiners.setModel(DbUtils.resultSetToTableModel(rs));
+////        }catch(Exception e){
+////            JOptionPane.showMessageDialog(null, "Connection Error");
+////        }
+//    }
+    
+    private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        new home().setVisible(true);
+    }//GEN-LAST:event_closeBtnActionPerformed
+
+    private void searchQueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchQueryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchQueryActionPerformed
+
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        // TODO add your handling code here:
+        String searchBy = (String)this.searchBy.getSelectedItem();
+        String searchByOption = "ay";
+        String searchQuery = "2022";
+        //Academic Year
+        //Semester
+        //Branch
+        //Division
+        //Exam
+        //Internal Name
+        //External Name
+        //Mobile
+        //Account Number
+        //IFSC Code
+        //Bank Branch
+        //Bank Address
+        //Number of Student
+        //Amount Per Student
+        searchQuery = this.searchQuery.getText();
+        if(searchBy == "Academic Year"){
+            searchByOption = "Academic_Year";
+        }else if(searchBy == "Semester"){
+            searchByOption = "Semester";
+            
+        }else if(searchBy == "Branch"){
+            searchByOption = "Branch";
+            
+        }else if(searchBy == "Division"){
+            searchByOption = "Division";
+            
+        }else if(searchBy == "Exam"){
+            searchByOption = "Exam";
+            
+        }else if(searchBy == "Internal Name"){
+            searchByOption = "Internal_Name";
+            
+        }else if(searchBy == "External Name"){
+            searchByOption = "External_Name";
+            
+        }else if(searchBy == "Mobile"){
+            searchByOption = "Mobile_Number";
+            
+        }else if(searchBy == "Account Number"){
+            searchByOption = "Account_Number";
+            
+        }else if(searchBy == "IFSC Code"){
+            searchByOption = "IFSC";
+            
+        }else if(searchBy == "Bank Branch"){
+            searchByOption = "Bank_Branch";
+            
+        }else if(searchBy == "Bank Address"){
+            searchByOption = "Bank_Address";
+            
+        }
+//        else if(searchBy == "Number of Student"){
+//            
+//        }else if(searchBy == "Amount Per Student"){
+//            
+//        }
+//        System.out.print("Hello World");
         try
+        {
+            Connection con = ConnectionProvider.getConnection();
+            Statement st = con.createStatement();
+            String query = "SELECT * FROM Examiner WHERE " + searchByOption + " LIKE '%" + searchQuery + "%';";
+            System.out.println(query);
+            ResultSet rs = st.executeQuery(query);
+            System.out.println(rs);
+            examiners.setModel(DbUtils.resultSetToTableModel(rs));
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Connection Error");
+        }
+    }//GEN-LAST:event_searchBtnActionPerformed
+
+    private void showAllBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showAllBtnActionPerformed
+        // TODO add your handling code here:
+         try
         {
             Connection con = ConnectionProvider.getConnection();
             Statement st = con.createStatement();
@@ -113,13 +257,7 @@ public class allExaminer extends javax.swing.JFrame {
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Connection Error");
         }
-    }
-    
-    private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
-        // TODO add your handling code here:
-        setVisible(false);
-        new home().setVisible(true);
-    }//GEN-LAST:event_closeBtnActionPerformed
+    }//GEN-LAST:event_showAllBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,6 +298,11 @@ public class allExaminer extends javax.swing.JFrame {
     private javax.swing.JButton closeBtn;
     private javax.swing.JTable examiners;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton searchBtn;
+    private javax.swing.JComboBox<String> searchBy;
+    private javax.swing.JTextField searchQuery;
+    private javax.swing.JButton showAllBtn;
     // End of variables declaration//GEN-END:variables
 }

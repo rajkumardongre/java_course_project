@@ -368,7 +368,11 @@ public class addExaminer extends javax.swing.JFrame {
         {
             Connection con = ConnectionProvider.getConnection();
             Statement st = con.createStatement();
-            st.executeUpdate("insert into Examiner values('"+ay+"', '"+semester+"', '"+branch+"', '"+division+"', '"+exam +"', '"+internalName+"', '"+externalName+"', '"+mobile+"', '"+accountNumber+"', '"+ifsc+"', '"+bankBranch+"', '"+bankAddress+"', '"+numberOfStudentAppeared+"', '"+amountPerStudent+"')");
+            st.executeUpdate("insert into Examiner( Academic_Year, Semester, Branch, Division, Exam, Internal_Name, External_Name, Mobile_Number, "
+                    + "Account_Number, IFSC, Bank_Branch, Bank_Address ,numberOfStudentAppeared, amountPerStudent) "
+                    + "values('"+ay+"', '"+semester+"', '"+branch+"', '"+division+"', '"+exam +"', '"+internalName+"', '"
+                    +externalName+"', '"+mobile+"', '"+accountNumber+"', '"+ifsc+"', '"+bankBranch+"', '"+bankAddress+"', '"
+                    +numberOfStudentAppeared+"', '"+amountPerStudent+"')");
             JOptionPane.showMessageDialog(null, "Successfully Aadded");
             setVisible(false);
             new addExaminer().setVisible(true);
