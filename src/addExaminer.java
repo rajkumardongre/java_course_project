@@ -115,7 +115,7 @@ public class addExaminer extends javax.swing.JFrame {
             }
         });
 
-        jLabel12.setFont(new java.awt.Font("Rockwell", 1, 24)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel12.setText("Add Examiner");
 
         addExaminer.setText("Add");
@@ -224,8 +224,7 @@ public class addExaminer extends javax.swing.JFrame {
                                             .addGap(42, 42, 42)
                                             .addComponent(totalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(18, 18, 18)
-                                            .addComponent(calculate)
-                                            .addGap(254, 254, 254))
+                                            .addComponent(calculate))
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jLabel14)
                                             .addGap(18, 18, 18)
@@ -329,7 +328,7 @@ public class addExaminer extends javax.swing.JFrame {
                     .addComponent(jLabel16)
                     .addComponent(totalAmount)
                     .addComponent(calculate))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
