@@ -27,7 +27,7 @@ public class home extends javax.swing.JFrame {
     private void initComponents() {
 
         addExaminerBtn = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        editBtn = new javax.swing.JButton();
         allExaminer = new javax.swing.JButton();
         logoutBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -41,7 +41,12 @@ public class home extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Edit Examiner");
+        editBtn.setText("Edit Examiner");
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtnActionPerformed(evt);
+            }
+        });
 
         allExaminer.setText("Stastics");
         allExaminer.addActionListener(new java.awt.event.ActionListener() {
@@ -68,7 +73,7 @@ public class home extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addComponent(addExaminerBtn)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(editBtn)
                 .addGap(18, 18, 18)
                 .addComponent(allExaminer)
                 .addGap(31, 31, 31)
@@ -87,7 +92,7 @@ public class home extends javax.swing.JFrame {
                 .addGap(72, 72, 72)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addExaminerBtn)
-                    .addComponent(jButton2)
+                    .addComponent(editBtn)
                     .addComponent(allExaminer)
                     .addComponent(logoutBtn))
                 .addContainerGap(115, Short.MAX_VALUE))
@@ -113,6 +118,12 @@ public class home extends javax.swing.JFrame {
         setVisible(false);
         new allExaminer().setVisible(true);
     }//GEN-LAST:event_allExaminerActionPerformed
+
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        new editExaminer().setVisible(true);
+    }//GEN-LAST:event_editBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -152,7 +163,7 @@ public class home extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addExaminerBtn;
     private javax.swing.JButton allExaminer;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton editBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton logoutBtn;
     // End of variables declaration//GEN-END:variables

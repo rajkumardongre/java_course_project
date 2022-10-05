@@ -16,7 +16,7 @@ public class ConnectionProvider {
         try
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://sql6.freesqldatabase.com:3306/sql6522267", "sql6522267", "put9AIWyVE");
+            Connection con = DriverManager.getConnection("jdbc:mysql://sql6.freesqldatabase.com:3306/sql6524116", "sql6524116", "Nt8Fh5LmLu");
             return con;
         }catch(Exception e)
         {
