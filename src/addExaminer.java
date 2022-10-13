@@ -2,6 +2,16 @@ import java.sql.*;
 import Project.ConnectionProvider;
 import javax.swing.JOptionPane;
 //package jsonreader
+import java.net.URL;
+import java.util.Scanner;
+
+//import org.json.JSONObject;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+//import java.org.json.parser.JSONParser;
+
+import java.net.HttpURLConnection;
+import javax.swing.JFrame;
 
 
 /*
@@ -13,6 +23,13 @@ import javax.swing.JOptionPane;
  *
  * @author Shree
  */
+class Prompt{
+	JFrame f;
+    Prompt(){
+        f=new JFrame();
+        JOptionPane.showMessageDialog(f,"Please enter Valid IFSC Code");
+    }
+}
 public class addExaminer extends javax.swing.JFrame {
 
     /**
@@ -115,6 +132,10 @@ public class addExaminer extends javax.swing.JFrame {
             }
         });
 
+        bankBranch.setEditable(false);
+
+        bankAddress.setEditable(false);
+
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel12.setText("Add Examiner");
 
@@ -135,6 +156,11 @@ public class addExaminer extends javax.swing.JFrame {
         jLabel13.setText("Account Number");
 
         ifscSearchBtn.setText("Search");
+        ifscSearchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ifscSearchBtnActionPerformed(evt);
+            }
+        });
 
         jLabel14.setText("Number of Student Appeared");
 
@@ -422,6 +448,67 @@ public class addExaminer extends javax.swing.JFrame {
         this.totalAmount.setText(Float. toString(totalAmount));
 
     }//GEN-LAST:event_calculateActionPerformed
+
+    private void ifscSearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ifscSearchBtnActionPerformed
+        // TODO add your handling code here:
+        String str = String.format("https://ifsc.razorpay.com/%s",ifsc.getText());
+            
+            try {
+
+                URL url = new URL(str);
+
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.connect();
+
+                //Check if connect is made
+                int responseCode = conn.getResponseCode();
+
+                // 200 OK
+                if (responseCode != 200) {
+                    throw new RuntimeException("HttpResponseCode: " + responseCode);
+                } else {
+
+                    StringBuilder informationString = new StringBuilder();
+                    Scanner scanner = new Scanner(url.openStream());
+
+                    while (scanner.hasNext()) {
+                        informationString.append(scanner.nextLine());
+                    }
+                    //Close the scanner
+                    scanner.close();
+
+                    System.out.println(informationString);
+
+
+                    //JSON simple library Setup with Maven is used to convert strings to JSON
+                    JSONParser parse = new JSONParser();
+//                    System.out.println(parse);
+//                    System.out.println(parse.getClass().getSimpleName());
+                    JSONObject json_obj = (JSONObject) parse.parse(String.valueOf(informationString));
+////                    System.out.println(json_obj.getClass().getSimpleName());
+//                    
+//
+                    String branchName = (String) json_obj.get("BRANCH");
+//                    branchNam.setText(brnchName);
+//                    
+                    String branchAddress = (String) json_obj.get("ADDRESS");
+//                    branchAdd.setText(branchAddress);
+//                    System.out.println(branchName);
+//                    System.out.println(branchAddress);
+                    bankBranch.setText(branchName);
+                    bankAddress.setText(branchAddress);
+
+                  
+                    
+
+                }
+            } catch (Exception exception) {
+                new Prompt();
+                exception.printStackTrace();
+                
+            }
+    }//GEN-LAST:event_ifscSearchBtnActionPerformed
 
     /**
      * @param args the command line arguments
