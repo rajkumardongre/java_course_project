@@ -369,29 +369,29 @@ public class updateExaminer extends javax.swing.JFrame {
         {
             Connection con = ConnectionProvider.getConnection();
             Statement st = con.createStatement();
-            String query = "SELECT * FROM Examiner WHERE ID="+id+";";
+            String query = "SELECT * FROM Examiners WHERE id="+id+";";
             System.out.println(query);
             ResultSet rs = st.executeQuery(query);
 //            System.out.println(rs.next());
             
             
             if(rs.next()){
-                String emailValue = rs.getString("Email");
-                String passwordValue = rs.getString("Password");
-                String ayValue = rs.getString("Academic_Year");
-                String semesterValue = rs.getString("Semester");
-                String branchValue = rs.getString("Branch");
-                String divisionValue = rs.getString("Division");
-                String examValue = rs.getString("Exam");
-                String internalNameValue = rs.getString("Internal_Name");
-                String externalNameValue = rs.getString("External_Name");
-                String accNumberValue = rs.getString("Account_Number");
-                String mobileNoValue = rs.getString("Mobile_Number");
-                String ifscValue = rs.getString("IFSC");
-                String bankBranchValue = rs.getString("Bank_Branch");
-                String bankAddressValue = rs.getString("Bank_Address");
-                int numberOfStudentValue = rs.getInt("Number_of_Student");
-                float amountPerStudentValue = rs.getFloat("Amount_per_Student");
+                String emailValue = rs.getString("email");
+                String passwordValue = rs.getString("password");
+                String ayValue = rs.getString("ay");
+                String semesterValue = rs.getString("semester");
+                String branchValue = rs.getString("branch");
+                String divisionValue = rs.getString("division");
+                String examValue = rs.getString("exam");
+                String internalNameValue = rs.getString("internal_name");
+                String externalNameValue = rs.getString("external_name");
+                String accNumberValue = rs.getString("acc_no");
+                String mobileNoValue = rs.getString("mob_no");
+                String ifscValue = rs.getString("ifsc_code");
+                String bankBranchValue = rs.getString("branch_name");
+                String bankAddressValue = rs.getString("bank_address");
+                int numberOfStudentValue = rs.getInt("no_of_student");
+                float amountPerStudentValue = rs.getFloat("amount_per_student");
                 
 //                System.out.println(emailValue);
 //                System.out.println(passwordValue);
@@ -434,6 +434,7 @@ public class updateExaminer extends javax.swing.JFrame {
             }
             
         }catch(Exception e){
+            System.out.println(e);
             JOptionPane.showMessageDialog(null, "Connection Error");
         }
     }//GEN-LAST:event_findBtnActionPerformed
@@ -489,30 +490,31 @@ public class updateExaminer extends javax.swing.JFrame {
         {
             Connection con = ConnectionProvider.getConnection();
             Statement st = con.createStatement();
-            String query = "UPDATE Examiner "+
-                    "SET Email='"+email+"',"+
-                    "Password='"+password+"',"+
-                    "Academic_Year='"+ay+"',"+
-                    "Semester='"+semester+"',"+
-                    "Branch='"+branch+"',"+
-                    "Division='"+division+"',"+
-                    "Exam='"+exam+"',"+
-                    "Internal_Name='"+internalName+"',"+
-                    "External_Name='"+externalName+"',"+
-                    "Mobile_Number='"+mobile+"',"+
-                    "Account_Number='"+accountNumber+"',"+
-                    "IFSC='"+ifsc+"',"+
-                    "Bank_Branch='"+bankBranch+"',"+
-                    "Bank_Address='"+bankAddress+"',"+
-                    "Number_of_Student="+numberOfStudentAppeared+","+
-                    "Amount_per_Student="+amountPerStudent+" "+
-                    "WHERE ID="+idInteger+";"
+            String query = "UPDATE Examiners "+
+                    "SET email='"+email+"',"+
+                    "password='"+password+"',"+
+                    "ay='"+ay+"',"+
+                    "semester='"+semester+"',"+
+                    "branch='"+branch+"',"+
+                    "division='"+division+"',"+
+                    "exam='"+exam+"',"+
+                    "internal_name='"+internalName+"',"+
+                    "external_name='"+externalName+"',"+
+                    "mob_no='"+mobile+"',"+
+                    "acc_no='"+accountNumber+"',"+
+                    "ifsc_code='"+ifsc+"',"+
+                    "branch_name='"+bankBranch+"',"+
+                    "bank_address='"+bankAddress+"',"+
+                    "no_of_student="+numberOfStudentAppeared+","+
+                    "amount_per_student="+amountPerStudent+" "+
+                    "WHERE id="+idInteger+";"
                     ;
             st.executeUpdate(query);
             JOptionPane.showMessageDialog(null, "Successfully Updated");
             
         }catch(Exception e)
         {
+            System.out.println(e);
             JOptionPane.showMessageDialog(null, "Connection Failed");
 //            setVisible(false);
 //            new home().setVisible(true);

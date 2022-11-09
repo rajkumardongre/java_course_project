@@ -408,8 +408,8 @@ public class addExaminer extends javax.swing.JFrame {
         {
             Connection con = ConnectionProvider.getConnection();
             Statement st = con.createStatement();
-            st.executeUpdate("insert into Examiner( Email, Password, Academic_Year, Semester, Branch, Division, Exam, Internal_Name, External_Name, Mobile_Number, "
-                    + "Account_Number, IFSC, Bank_Branch, Bank_Address , Number_of_Student, Amount_per_Student) "
+            st.executeUpdate("insert into Examiners( email, password, ay, semester, branch, division, exam, internal_name, external_name, mob_no, "
+                    + "acc_no, ifsc_code, branch_name, bank_address , no_of_student, amount_per_student) "
                     + "values('"+email+"','"+password+"','"+ay+"', '"+semester+"', '"+branch+"', '"+division+"', '"+exam +"', '"+internalName+"', '"
                     +externalName+"', '"+mobile+"', '"+accountNumber+"', '"+ifsc+"', '"+bankBranch+"', '"+bankAddress+"', '"
                     +numberOfStudentAppeared+"', '"+amountPerStudent+"')");
@@ -417,6 +417,7 @@ public class addExaminer extends javax.swing.JFrame {
             
         }catch(Exception e)
         {
+            System.out.println(e);
             JOptionPane.showMessageDialog(null, "Connection Failed");
 //            setVisible(false);
 //            new home().setVisible(true);

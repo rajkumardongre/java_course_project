@@ -113,7 +113,7 @@ public class deleteExaminer extends javax.swing.JFrame {
         {
             Connection con = ConnectionProvider.getConnection();
             Statement st = con.createStatement();
-            String q = "DELETE FROM Examiner WHERE ID='"+id+"';";
+            String q = "DELETE FROM Examiners WHERE id='"+id+"';";
             st.executeUpdate(q);
             this.id.setText("");
             JOptionPane.showMessageDialog(null, "Exam with ID "+id+" is Successfully Removed");

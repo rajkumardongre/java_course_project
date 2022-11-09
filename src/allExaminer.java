@@ -25,7 +25,7 @@ public class allExaminer extends javax.swing.JFrame {
         {
             Connection con = ConnectionProvider.getConnection();
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * from Examiner;");
+            ResultSet rs = st.executeQuery("SELECT * from Examiners;");
             System.out.println(rs);
             examiners.setModel(DbUtils.resultSetToTableModel(rs));
         }catch(Exception e){
@@ -195,39 +195,39 @@ public class allExaminer extends javax.swing.JFrame {
         //Amount Per Student
         searchQuery = this.searchQuery.getText();
         if(searchBy == "Academic Year"){
-            searchByOption = "Academic_Year";
+            searchByOption = "ay";
         }else if(searchBy == "Semester"){
-            searchByOption = "Semester";
+            searchByOption = "semester";
             
         }else if(searchBy == "Branch"){
-            searchByOption = "Branch";
+            searchByOption = "branch";
             
         }else if(searchBy == "Division"){
-            searchByOption = "Division";
+            searchByOption = "division";
             
         }else if(searchBy == "Exam"){
-            searchByOption = "Exam";
+            searchByOption = "exam";
             
         }else if(searchBy == "Internal Name"){
-            searchByOption = "Internal_Name";
+            searchByOption = "internal_name";
             
         }else if(searchBy == "External Name"){
-            searchByOption = "External_Name";
+            searchByOption = "external_name";
             
         }else if(searchBy == "Mobile"){
-            searchByOption = "Mobile_Number";
+            searchByOption = "mob_no";
             
         }else if(searchBy == "Account Number"){
-            searchByOption = "Account_Number";
+            searchByOption = "acc_no";
             
         }else if(searchBy == "IFSC Code"){
-            searchByOption = "IFSC";
+            searchByOption = "ifsc_code";
             
         }else if(searchBy == "Bank Branch"){
-            searchByOption = "Bank_Branch";
+            searchByOption = "bank_branch";
             
         }else if(searchBy == "Bank Address"){
-            searchByOption = "Bank_Address";
+            searchByOption = "bank_address";
             
         }
 //        else if(searchBy == "Number of Student"){
@@ -240,7 +240,7 @@ public class allExaminer extends javax.swing.JFrame {
         {
             Connection con = ConnectionProvider.getConnection();
             Statement st = con.createStatement();
-            String query = "SELECT * FROM Examiner WHERE " + searchByOption + " LIKE '%" + searchQuery + "%';";
+            String query = "SELECT * FROM Examiners WHERE " + searchByOption + " LIKE '%" + searchQuery + "%';";
             System.out.println(query);
             ResultSet rs = st.executeQuery(query);
             System.out.println(rs);
@@ -256,7 +256,7 @@ public class allExaminer extends javax.swing.JFrame {
         {
             Connection con = ConnectionProvider.getConnection();
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * from Examiner;");
+            ResultSet rs = st.executeQuery("SELECT * from Examiners;");
             System.out.println(rs);
             examiners.setModel(DbUtils.resultSetToTableModel(rs));
         }catch(Exception e){

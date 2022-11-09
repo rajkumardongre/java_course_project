@@ -16,7 +16,9 @@ public class ConnectionProvider {
         try
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://sql6.freesqldatabase.com:3306/sql6524116", "sql6524116", "Nt8Fh5LmLu");
+//            Connection con = DriverManager.getConnection("jdbc:mysql://sql6.freesqldatabase.com:3306/sql6524116", "sql6524116", "Nt8Fh5LmLu");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/JAVA_OOP", "root", "root");
+            System.out.println("Connected !!! \n" + con);
             return con;
         }catch(Exception e)
         {
