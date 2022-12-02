@@ -1,7 +1,14 @@
 import java.sql.*;
 import Project.ConnectionProvider;
+import com.formdev.flatlaf.FlatDarkLaf;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -42,6 +49,7 @@ public class allExaminer extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         closeBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -51,6 +59,9 @@ public class allExaminer extends javax.swing.JFrame {
         searchBtn = new javax.swing.JButton();
         searchBy = new javax.swing.JComboBox<>();
         showAllBtn = new javax.swing.JButton();
+        exportBtn = new javax.swing.JButton();
+
+        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,15 +112,22 @@ public class allExaminer extends javax.swing.JFrame {
             }
         });
 
+        exportBtn.setText("Export Data");
+        exportBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exportBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
                         .addComponent(searchBy, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -121,8 +139,9 @@ public class allExaminer extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 365, Short.MAX_VALUE)
                         .addComponent(showAllBtn))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(exportBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(closeBtn)))
                 .addContainerGap())
         );
@@ -143,7 +162,9 @@ public class allExaminer extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(closeBtn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(closeBtn)
+                    .addComponent(exportBtn))
                 .addGap(11, 11, 11))
         );
 
@@ -264,6 +285,40 @@ public class allExaminer extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_showAllBtnActionPerformed
 
+    public void exportTable(JTable table, File file) throws IOException{
+        TableModel model = table.getModel();
+        FileWriter out = new FileWriter(file);
+        BufferedWriter bw = new BufferedWriter(out);
+        for(int i=0; i<model.getColumnCount(); i++){
+            bw.write(model.getColumnName(i) + "\t");
+        }
+        bw.write("\n");
+         for(int i=0; i<model.getRowCount(); i++){
+            for(int j=0; j<model.getColumnCount(); j++){
+                bw.write(model.getValueAt(i, j) + "\t");
+            }
+            bw.write("\n");   
+         }
+         bw.close();
+    }
+    private void exportBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportBtnActionPerformed
+        // TODO add your handling code here:
+        try{
+//        String FilePath = "D:\\Academic\\JAVA_OOP\\COURSE_PROJECT\\Exported_Data\\Data" + new java.util.Date()+".xls";
+//        
+        String fileName = "Data" + new java.util.Date();
+        fileName = fileName.replaceAll(" ", "_");
+        fileName = fileName.replaceAll(":", "-");
+        String FilePath = "D:\\Academic\\JAVA_OOP\\COURSE_PROJECT\\Exported_Data\\"+fileName+".xls";
+
+
+        exportTable(examiners, new File(FilePath));
+        JOptionPane.showMessageDialog(null, "The File is Exported to following path : \n" + FilePath);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_exportBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -290,7 +345,7 @@ public class allExaminer extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(allExaminer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        FlatDarkLaf.setup();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -302,6 +357,8 @@ public class allExaminer extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeBtn;
     private javax.swing.JTable examiners;
+    private javax.swing.JButton exportBtn;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

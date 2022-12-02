@@ -1,3 +1,6 @@
+
+import com.formdev.flatlaf.FlatDarkLaf;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -136,7 +139,7 @@ public class editExaminer extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(editExaminer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+FlatDarkLaf.setup();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

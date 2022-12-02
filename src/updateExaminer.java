@@ -1,5 +1,6 @@
 
 import Project.ConnectionProvider;
+import com.formdev.flatlaf.FlatDarkLaf;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -547,7 +548,7 @@ public class updateExaminer extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(updateExaminer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+FlatDarkLaf.setup();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
